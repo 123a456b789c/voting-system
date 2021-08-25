@@ -93,6 +93,5 @@ socket.on('bt1', function(){
 
 
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
-});
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running..."));
