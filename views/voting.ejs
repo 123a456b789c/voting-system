@@ -1,0 +1,161 @@
+<html>
+
+<head>
+	<title> Szavazási rendszer </title>
+	<script src="/socket.io/socket.io.js">
+	</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+body {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  background: linear-gradient(to right, #0F1043, #0A4344);
+  background-size: 100% 100%;
+}
+
+
+h1 {
+font-family: "Times New Roman", Times, serif;
+font-size: 27px;
+letter-spacing: -0.4px;
+word-spacing: 2px;
+color: #FFB422;
+font-weight: 700;
+text-decoration: none solid rgb(68, 68, 68);
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+text-shadow: 2px 2px black;
+}
+
+p {
+font-family: "Times New Roman", Times, serif;
+font-size: 20px;
+letter-spacing: -0.4px;
+word-spacing: 2px;
+color: #FFB422;
+font-weight: 700;
+text-decoration: none solid rgb(68, 68, 68);
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+text-shadow: 2px 2px black;
+}
+
+  Button {
+	box-shadow:inset 0px 1px 0px 0px #f9eca0;
+	background:linear-gradient(to bottom, #f0c911 5%, #f2ab1e 100%);
+	background-color:#f0c911;
+	border-radius:6px;
+	border:1px solid #e65f44;
+	display:inline-block;
+	cursor:pointer;
+	color:#c92200;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ded17c;
+}
+Button:hover {
+	background:linear-gradient(to bottom, #f2ab1e 5%, #f0c911 100%);
+	background-color:#f2ab1e;
+}
+Button:active {
+	position:relative;
+	top:1px;
+}
+</style>
+
+
+
+
+
+
+
+	<script>
+		var socket = io();
+    var voted = false;
+
+    function bt1() {
+    if (voted == true) {
+    alert ("Már szavazott!") 
+    } else {
+    socket.emit('bt1', '');
+    voted = true
+    }
+}
+    function bt2() {
+    if (voted == true) {
+    alert ("Már szavazott!") 
+    } else {
+    socket.emit('bt2', '');
+     voted = true
+    }
+}
+    function bt3() {
+    if (voted == true) {
+    alert ("Már szavazott!") 
+    } else {
+    socket.emit('bt3', '');
+     voted = true
+    }
+}
+    function bt4() {
+    if (voted == true) {
+    alert ("Már szavazott!") 
+    } else {
+    socket.emit('bt4', '');
+     voted = true
+    }
+}
+    function bt5() {
+    if (voted == true) {
+    alert ("Már szavazott!") 
+    } else {
+    socket.emit('bt5', '');
+     voted = true
+    }
+}
+
+function chart() {
+const Http = new XMLHttpRequest();
+const url='https://voting.mikulalajos.repl.co/chart';
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+   const obj = JSON.parse(Http.responseText);
+document.getElementById("s1").innerText = `${obj.songs[0].title} - ${obj.songs[0].artist}`
+document.getElementById("s2").innerText = `${obj.songs[1].title} - ${obj.songs[1].artist}`
+document.getElementById("s3").innerText = `${obj.songs[2].title} - ${obj.songs[2].artist}`
+document.getElementById("s4").innerText = `${obj.songs[3].title} - ${obj.songs[3].artist}`
+document.getElementById("s5").innerText = `${obj.songs[4].title} - ${obj.songs[4].artist}`
+}
+}
+
+socket.on("update", function(data) {
+  document.getElementById("v1").innerText = ` ${data.b1} szavazat `
+  document.getElementById("v2").innerText = ` ${data.b2} szavazat `
+  document.getElementById("v3").innerText = ` ${data.b3} szavazat `
+  document.getElementById("v4").innerText = ` ${data.b4} szavazat `
+  document.getElementById("v5").innerText = ` ${data.b5} szavazat `
+});
+</script>
+</head>
+
+<body onload="chart()">
+	<h1>Online kívánságkosár </h1>
+<p> A gombokra kattintva szavazzon egy zeneszámra! </p>
+
+<p id="s1">-</p> <button onclick="bt1()"> Szavazás </button> </br> <p id="v1">-</p>
+<p id="s2">-</p>  <button onclick="bt2()"> Szavazás </button> </br> <p id="v2">-</p>
+<p id="s3">-</p>  <button onclick="bt3()"> Szavazás </button> </br> <p id="v3">-</p>
+<p id="s4">-</p>  <button onclick="bt4()"> Szavazás </button> </br> <p id="v4">-</p>
+<p id="s5">-</p>  <button onclick="bt5()"> Szavazás </button> </br> <p id="v5">-</p>
+</body>
+
+</html>
