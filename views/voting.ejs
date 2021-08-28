@@ -15,6 +15,19 @@ body {
   background-size: 100% 100%;
 }
 
+.red {
+font-family: "Times New Roman", Times, serif;
+font-size: 17px;
+letter-spacing: -0.4px;
+word-spacing: 2px;
+color: red;
+font-weight: 700;
+text-decoration: none solid rgb(68, 68, 68);
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+text-shadow: 2px 2px black;
+}
 
 h1 {
 font-family: "Times New Roman", Times, serif;
@@ -155,7 +168,8 @@ socket.on("update", function(data) {
 <p id="s2">-</p>  <button onclick="bt2()"> Szavazás </button> </br> <p id="v2">-</p>
 <p id="s3">-</p>  <button onclick="bt3()"> Szavazás </button> </br> <p id="v3">-</p>
 <p id="s4">-</p>  <button onclick="bt4()"> Szavazás </button> </br> <p id="v4">-</p>
-<p id="s5">-</p>  <button onclick="bt5()"> Szavazás </button> </br> <p id="v5">-</p>
+<p id="s5">-</p>  <button onclick="bt5()"> Szavazás </button> </br> <p id="v5">-</p></br>
+<p class="red">A szavazók IP-címe a szavazás idejére rögzítve lesz.</p>
 </body>
 
 </html>

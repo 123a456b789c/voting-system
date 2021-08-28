@@ -2,10 +2,12 @@ const billboardTop100 = require("billboard-top-100")
 const express = require('express');
 const app = express();
 const http = require('http');
+bodyParser = require('body-parser');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 app.set("view engine","ejs"); 
+app.use(bodyParser.json());
 var o1 = 0
 var o2 = 0
 var o3 = 0
@@ -29,6 +31,21 @@ app.get('/chart', function(req, res) {
 res.send(chart1);
 });
 
+app.delete('/reset', function(req, res) {
+o1 = 0
+o2 = 0
+o3 = 0
+o4 = 0
+o5 = 0
+ip = []; 
+chart();
+res.send("Reset Succesful");
+});
+
+app.post('/manual', function(req, res) {
+    console.log(req.body);
+    res.send(req.body)
+});
 
 io.on('connection', function(socket){
 io.emit('update', {b1: `${o1}`, b2: `${o2}`, b3: `${o3}`, b4: `${o4}`, b5: `${o5}`});  
@@ -92,4 +109,7 @@ socket.on('bt1', function(){
 });
 
 
-app.listen(process.env.PORT || 3000);
+
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
